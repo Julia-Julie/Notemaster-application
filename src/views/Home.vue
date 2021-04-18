@@ -3,34 +3,43 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
+    <!-- <pre>{{notes}}</pre> -->
     <div class="container">
-      <div class="home__content">
       <h1>{{ headline }}</h1>
 
-      <div class="home__field">
-        <label for="home-title">Title</label>
-        <input type="text" id="home-title" v-model="note.title" />
+      <div class="home__content">
+        <!-- Title field -->
+        <div class="home__field">
+          <label for="home-title">Title</label>
+          <input type="text" id="home-title" v-model="note.title" />
+        </div>
+
+        <!-- Text field -->
+        <div class="home__field">
+          <label for="home-text">Text</label>
+          <textarea id="home-text" v-model="note.text"></textarea>
+        </div>
+
+        <!-- Button -->
+        <button class="btn-primary" @click="addNote">Submit</button>
       </div>
 
-      <div class="home__field">
-        <label for="home-text">Text</label>
-        <textarea id="home-text" v-model="note.text"></textarea>
+      <!-- added cards -->
+      <div :key="index" class="home__card-list" v-for="(note, index) in notes">
+        <div class="home__card-item">
+          <div class="home__card-title">{{ note.title }}</div>
+          <div class="home__card-date">{{ note.date }}</div>
+          <div class="home__card-text">{{ note.text }}</div>
+        </div>
       </div>
-
-      <button class="btn-primary" @click="addNote">Submit</button>
     </div>
-    </div>
-
-    
   </div>
 </template>
 
 <script>
 export default {
   name: "Home",
-  components: {
-    // HelloWorld
-  },
+  components: {},
 
   data() {
     return {
@@ -42,51 +51,70 @@ export default {
 
       notes: [
         {
-          title: 'Do shopping',
-          text: 'Buy bread, eggs and sausages',
-          date: new Date(Date.now)
-
-        }
-      ]
+          title: "Do shopping",
+          text: "Buy bread, eggs and sausages",
+          date: new Date().toLocaleString(),
+        },
+      ],
     };
   },
 
-  methods:{
-    addNote(){
-      let {title, text} = this.note
+  methods: {
+    addNote() {
+      let { title, text } = this.note;
       this.notes.push({
         text,
-        title, 
-        date: new Date(Date.now)
-      })
-    }
-  }
+        title,
+        date: new Date().toLocaleString(),
+      });
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
+// Variables
+$primary-color: violet;
+$secondary-color: rgb(80, 0, 80);
+$filled-bg: lavenderblush;
+
+@mixin flex-align ($horizontal, $vertical) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $horizontal;
+  align-items: $vertical;
+}
+
+// Reset styles
 input,
 select,
 textarea,
 button,
 ::placeholder {
   all: unset;
+  outline: none;
+
+  &:focus {
+    all: unset;
+  }
 }
 
-.container{
+.container {
   max-width: 1100px;
   margin: 0 auto;
 }
 
 .home {
-  background-color: rgb(228, 247, 250);
-  display: flex;
-  justify-content: center;
+  color: $secondary-color;
+  // @extend %flex-align;
+  @include flex-align('center', 'center');
+
+  h1 {
+    color: $primary-color;
+  }
 
   &__content {
-    // max-width: 800px;
-    min-width: 600px;
-    border: 1px solid green;
+    min-width: 900px;
   }
 
   &__field {
@@ -95,40 +123,51 @@ button,
     display: flex;
     flex-direction: column;
 
-    label{
+    label {
       font-size: 2rem;
       font-weight: bold;
-      color: violet;
+      color: $primary-color;
       text-align: left;
       padding-bottom: 10px;
     }
-    
-    input, textarea{
-    border: 1px solid grey;
-    padding: 1rem;
 
+    input,
+    textarea {
+      border: 1px solid $secondary-color;
+      padding: 1.5rem;
+      outline: none;
+      background-color: lighten($filled-bg, 1%);
+      font-size: 1.3rem;
     }
-
-    > *{
+    > * {
       display: block;
     }
   }
 
-  .btn-primary{
-    background-color: violet;
+  .btn-primary {
+    background-color: $secondary-color;
     padding: 16px 48px;
     border-radius: 10px;
     font-size: 1.3rem;
     margin-bottom: 2rem;
-    transition: all .3s ease;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    color: #fff;
+    transition-property: background-color, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
     cursor: pointer;
 
-    &:hover{
-      background-color: rgb(250, 245, 235);
-      color: violet;
-      border: 1px solid grey;
-      box-shadow: 0px 0px 2px #ccc;
+    &:hover {
+      background-color: darken($secondary-color, 3%);
     }
+  }
+
+  // Card List
+  &__card-list{
+    @include flex-align('flex-start', 'baseline')
+
   }
 }
 </style>
