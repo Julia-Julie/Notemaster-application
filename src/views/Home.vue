@@ -21,7 +21,7 @@
         </div>
 
         <!-- Button -->
-        <button class="btn-primary" @click="addNote">Submit</button>
+        <button class="btn-primary" @click="addNote">Submit me</button>
       </div>
 
       <!-- added cards -->
