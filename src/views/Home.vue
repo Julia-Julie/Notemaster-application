@@ -8,7 +8,7 @@
         <!-- Title field -->
         <div class="home__field">
           <label for="home-title">Title</label>
-           <input type="text" id="home-title" v-model="note.title" v-on:change="changeSth"/>
+           <input type="text" id="home-title" v-model="note.title"/>
           
         </div>
 
@@ -32,6 +32,7 @@
           <div class="home__card-title">{{ note.title }}</div>
           <div class="home__card-date">{{ note.date }}</div>
           <div class="home__card-text">{{ note.text }}</div>
+          <div class="home__close-btn" @click="removeNote(index)">&times;</div>
         </div>
       </div>
     </div>
@@ -73,8 +74,8 @@ export default {
       this.note.text = "";
     },
 
-    changeSth() {
-      console.log('Orest');
+    removeNote(index) {
+      this.notes.splice(index, 1)
     }
   },
 };
@@ -85,6 +86,7 @@ export default {
 $primary-color: violet;
 $secondary-color: rgb(80, 0, 80);
 $filled-bg: lavenderblush;
+$red-color: rgb(107, 18, 18);
 
 @mixin flex-align($horizontal, $vertical) {
   display: flex;
@@ -115,7 +117,7 @@ button,
 .home {
   color: $secondary-color;
   // @extend %flex-align;
-  @include flex-align("center", "center");
+  @include flex-align(center, center);
 
   h1 {
     color: $primary-color;
@@ -187,7 +189,24 @@ button,
     height: auto;
     word-wrap: break-word;
     box-shadow: 0 0 5px 1px #333;
+    position: relative;
 
+  }
+
+  &__close-btn{
+    color: $red-color;
+    width: 15px;
+    height: auto;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.3rem;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+
+    &:hover{
+    color: lighten($red-color, 30%);
+    }
   }
 }
 </style>
