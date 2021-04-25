@@ -8,7 +8,8 @@
         <!-- Title field -->
         <div class="home__field">
           <label for="home-title">Title</label>
-          <input type="text" id="home-title" v-model="note.title" />
+           <input type="text" id="home-title" v-model="note.title" v-on:change="changeSth"/>
+          
         </div>
 
         <!-- Text field -->
@@ -68,7 +69,13 @@ export default {
         title,
         date: new Date().toLocaleString(),
       });
+      this.note.title = "";
+      this.note.text = "";
     },
+
+    changeSth() {
+      console.log('Orest');
+    }
   },
 };
 </script>
@@ -168,9 +175,9 @@ button,
 
   // Card List
   &__card-list {
-    @include flex-align("space-around", "center");
+    @include flex-align(space-around, center);
     grid-gap: 1.3rem;
-    justify-content: space-around
+    // justify-content: space-around
 
   }
 
