@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-
     <!-- <pre>{{notes}}</pre> -->
     <div class="container">
       <h1>{{ headline }}</h1>
@@ -25,8 +22,12 @@
       </div>
 
       <!-- added cards -->
-      <div :key="index" class="home__card-list" v-for="(note, index) in notes">
-        <div class="home__card-item">
+      <div class="home__card-list">
+        <div
+          :key="index"
+          class="home__card-item"
+          v-for="(note, index) in notes"
+        >
           <div class="home__card-title">{{ note.title }}</div>
           <div class="home__card-date">{{ note.date }}</div>
           <div class="home__card-text">{{ note.text }}</div>
@@ -78,7 +79,7 @@ $primary-color: violet;
 $secondary-color: rgb(80, 0, 80);
 $filled-bg: lavenderblush;
 
-@mixin flex-align ($horizontal, $vertical) {
+@mixin flex-align($horizontal, $vertical) {
   display: flex;
   flex-wrap: wrap;
   justify-content: $horizontal;
@@ -107,7 +108,7 @@ button,
 .home {
   color: $secondary-color;
   // @extend %flex-align;
-  @include flex-align('center', 'center');
+  @include flex-align("center", "center");
 
   h1 {
     color: $primary-color;
@@ -138,6 +139,7 @@ button,
       outline: none;
       background-color: lighten($filled-bg, 1%);
       font-size: 1.3rem;
+      word-wrap: break-word;
     }
     > * {
       display: block;
@@ -165,8 +167,19 @@ button,
   }
 
   // Card List
-  &__card-list{
-    @include flex-align('flex-start', 'baseline')
+  &__card-list {
+    @include flex-align("space-around", "center");
+    grid-gap: 1.3rem;
+    justify-content: space-around
+
+  }
+
+  &__card-item {
+    max-width: 230px;
+    padding:10px;
+    height: auto;
+    word-wrap: break-word;
+    box-shadow: 0 0 5px 1px #333;
 
   }
 }

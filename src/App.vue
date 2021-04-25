@@ -12,7 +12,6 @@
 body{
   background-color: lavenderblush;
   font-size: 1.2rem;
-
 }
 
 #app {
@@ -20,12 +19,10 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  // height: 100vh;
 }
 
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: #222;

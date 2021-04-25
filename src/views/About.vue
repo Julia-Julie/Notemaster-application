@@ -1,18 +1,35 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1 class='about__headline'>{{ headline }}</h1>
+    <div class='about__content'> {{content}} </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'About',
-  components: {
-    // HelloWorld
-  }
-}
+  name: "About",
+    data() {
+      return {
+        headline: "About Notemaster App",
+        content: "By means of this app, You can add any notes You want. So, no worries, You may forget something"
+      };
+    },
+};
 </script>
 
+<style scoped lang="scss">
+.about{
+  &__headline{
+    color: red;
+  }
+
+  &__content{
+    color: purple;
+  }
+
+
+}
+
+
+</style>
