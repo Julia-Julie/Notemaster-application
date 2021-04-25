@@ -8,8 +8,7 @@
         <!-- Title field -->
         <div class="home__field">
           <label for="home-title">Title</label>
-           <input type="text" id="home-title" v-model="note.title"/>
-          
+          <input type="text" id="home-title" v-model="note.title" />
         </div>
 
         <!-- Text field -->
@@ -75,8 +74,8 @@ export default {
     },
 
     removeNote(index) {
-      this.notes.splice(index, 1)
-    }
+      this.notes.splice(index, 1);
+    },
   },
 };
 </script>
@@ -180,20 +179,18 @@ button,
     @include flex-align(space-around, center);
     grid-gap: 1.3rem;
     // justify-content: space-around
-
   }
 
   &__card-item {
     max-width: 230px;
-    padding:10px;
+    padding: 10px;
     height: auto;
     word-wrap: break-word;
     box-shadow: 0 0 5px 1px #333;
     position: relative;
-
   }
 
-  &__close-btn{
+  &__close-btn {
     color: $red-color;
     width: 15px;
     height: auto;
@@ -201,11 +198,11 @@ button,
     top: 5px;
     right: 5px;
     font-size: 1.3rem;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
 
-    &:hover{
-    color: lighten($red-color, 30%);
+    &:hover {
+      color: lighten($red-color, 30%);
     }
   }
 }
